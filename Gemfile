@@ -1,55 +1,69 @@
 source "https://rubygems.org"
 
-ruby "3.3.6"
-
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.3"
-
-# Asset pipeline (Rails 8 default — replaces Sprockets)
+# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-
-# Database
+# Use sqlite3 as the database for Active Record
 gem "sqlite3", ">= 2.1"
-
-# Web server
+# Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
-
-# JavaScript via import maps (Rails 8 default)
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
-
-# Hotwire — replaces Turbolinks from the tutorial's original Gemfile
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-
-# JSON building (used by jbuilder views, not needed for this app but
-# harmless to leave in since it's a Rails 8 default)
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Required for User#authenticate / has_secure_password (Ch 6) —
-# commented out by default in fresh Rails 8 apps, must be enabled
-gem "bcrypt", "~> 3.1.7"
-
-# Pagination (Ch 10 users index, Ch 13 microposts, Ch 14 followers)
-gem "will_paginate", "~> 4.0"
-
-# Fake data for db/seeds.rb
-gem "faker", "~> 3.4"
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
+gem "kamal", require: false
+
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "image_processing", "~> 1.2"
+
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[ windows ], require: "debug/prelude"
+
+  # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
+  gem "bundler-audit", require: false
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
+  gem "guard", "~> 2.18"
+  gem "guard-minitest", "~> 2.4"
 end
 
 group :development do
+  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
 
-# NOTE: pg, kamal, thruster, solid_cache/queue/cable, brakeman, rubocop-rails-omakase,
-# bundler-audit, capybara, selenium-webdriver were all in the Rails-8-generated
-# Gemfile but are NOT needed to run this tutorial app locally in Docker with SQLite.
-# They're safe to leave out while learning; add them back later if you deploy
-# for real or want CI/security tooling.
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "minitest-reporters"
+end
