@@ -32,6 +32,15 @@
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
+/config/credentials/*.key
+
+# Misc
+/.byebug_history
+.DS_Store
+.env
+.env.*
+/yarn-error.log
+/node_modules
 
 # Ignore db test files
 db/test.*
