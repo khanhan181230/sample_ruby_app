@@ -8,3 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+// Custom variables must be set BEFORE the import
+$primary: #cc0000;
+// 1. Import Bootstrap first so its variables, mixins, and grid are available
+@import "bootstrap";
+
+// 2. Import your tutorial styles next
+@import "custom";
