@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "sessions/new"
   root "static_pages#home"
   # Static routes
   get "/help", to: "static_pages#help"
@@ -6,6 +7,9 @@ Rails.application.routes.draw do
   get "/contact", to: "static_pages#contact"
   # Signup/signin routes
   get "/signup", to: "users#new"
+  get "/login", to: "sessions#new"  # page for a new session (login)
+  post "/login", to: "sessions#create" # create a new session (login)
+  delete "/logout", to: "sessions#destroy"  # delete a session (logout)
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
