@@ -57,6 +57,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "guard", "~> 2.18"
   gem "guard-minitest", "~> 2.4"
+  gem "faker"
+  gem "kaminari"
 end
 
 group :development do

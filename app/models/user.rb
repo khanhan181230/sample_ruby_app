@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  paginates_per 30
   NAME_MAX_LENGTH = 50
   EMAIL_MAX_LENGTH = 255
   PASSWORD_MIN_LENGTH = 6
@@ -7,7 +8,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: NAME_MAX_LENGTH }
   validates :email, presence: true, length: { maximum: EMAIL_MAX_LENGTH }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: PASSWORD_MIN_LENGTH }
+  validates :password, presence: true, length: { minimum: PASSWORD_MIN_LENGTH }, allow_nil: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)
