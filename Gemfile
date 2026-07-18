@@ -16,6 +16,9 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "bootstrap", "~> 5.3.8"
+gem "dartsass-rails" # Recommended for Propshaft (the Rails 8 default)
+gem "bcrypt", "~> 3.1.7"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -54,11 +57,14 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "guard", "~> 2.18"
   gem "guard-minitest", "~> 2.4"
+  gem "faker"
+  gem "kaminari"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "foreman"
 end
 
 group :test do
@@ -66,4 +72,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "minitest-reporters"
+  gem "rails-controller-testing"
 end
